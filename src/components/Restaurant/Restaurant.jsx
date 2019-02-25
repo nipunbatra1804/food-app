@@ -1,4 +1,5 @@
 import React from "react";
+import "./Restaurant.scss";
 
 export default function Restaurant(props) {
   const {
@@ -13,7 +14,7 @@ export default function Restaurant(props) {
   } = props.item;
 
   return (
-    <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex mb-4">
+    <div className="card-col">
       <div
         className="card"
         style={{
