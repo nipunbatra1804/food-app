@@ -38,8 +38,8 @@ export default function Restaurant(props) {
             </div>
           </div>
         </div>
-        <div class="card-footer text-muted">
-          <button class="btn btn-primary">Order</button>
+        <div className="card-footer text-muted">
+          <button className="btn btn-primary">Order</button>
         </div>
       </div>
     </div>
