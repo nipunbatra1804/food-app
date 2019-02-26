@@ -14,7 +14,7 @@ class HomePage extends Component {
     const { restaurants, cuisines } = this.state;
     return (
       <div className="container">
-        <div className="d-flex justify-content-center">
+        <div className="col-4 mx-auto mt-3">
           <FilterBar cuisines={cuisines} />
         </div>
         <div className="row">
