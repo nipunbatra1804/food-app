@@ -1,9 +1,9 @@
 //imports
 import "jest-dom/extend-expect";
 import "react-testing-library/cleanup-after-each";
-import Restaurant from "./Restaurant";
 import { render } from "react-testing-library";
 import React from "react";
+import Restaurant from "../Restaurant/Restaurant";
 
 test("Restaurant Component renders with attributes", () => {
   const testRest = {

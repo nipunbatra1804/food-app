@@ -5,6 +5,7 @@ export default class HomePage extends Component {
   state = {
     restaurants: getRestaurants()
   };
+
   render() {
     return (
       <div className="row">
