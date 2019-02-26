@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import { getRestaurants } from "../../services/restaurantService";
 import Restaurant from "../Restaurant/Restaurant";
 import "./HomePage.scss";
+import FilterBar from "../FilterBar/FilterBar";
+import { getCuisines } from "../../services/cuisineService";
 
 class HomePage extends Component {
   state = {
-    restaurants: getRestaurants()
+    restaurants: getRestaurants(),
+    cuisines: getCuisines()
   };
   render() {
-    const { restaurants } = this.state;
+    const { restaurants, cuisines } = this.state;
     return (
-      <div className="container-fluid">
+      <div className="container">
+        <div className="d-flex justify-content-center">
+          <FilterBar cuisines={cuisines} />
+        </div>
         <div className="row">
           {restaurants.map(restaurant => (
             <div className="card-col" key={restaurant._id}>
