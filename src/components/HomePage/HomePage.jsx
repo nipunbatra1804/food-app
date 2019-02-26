@@ -4,21 +4,30 @@ import Restaurant from "../Restaurant/Restaurant";
 import "./HomePage.scss";
 import FilterBar from "../FilterBar/FilterBar";
 import { getCuisines, getDefaultCuisine } from "../../services/cuisineService";
+import { deepClone } from "lodash";
 
 class HomePage extends Component {
   state = {
     restaurants: getRestaurants(),
-    cuisines: [getDefaultCuisine(), ...getCuisines()]
+    cuisines: [getDefaultCuisine(), ...getCuisines()],
+    filterId: getDefaultCuisine()._id
+  };
+  handleFilterValue = (eveId, data) => {
+    this.setState({ filterId: eveId });
   };
   render() {
-    const { restaurants, cuisines } = this.state;
+    const { restaurants, cuisines, filterId } = this.state;
+    const renderRestaurants =
+      filterId === getDefaultCuisine()._id
+        ? restaurants
+        : restaurants.filter(item => item.cuisine._id === filterId);
     return (
       <div className="container">
         <div className="d-flex justify-content-center">
-          <FilterBar cuisines={cuisines} />
+          <FilterBar cuisines={cuisines} handleClick={this.handleFilterValue} />
         </div>
         <div className="row">
-          {restaurants.map(restaurant => (
+          {renderRestaurants.map(restaurant => (
             <div className="card-col" key={restaurant._id}>
               <Restaurant details={restaurant} />
             </div>
