@@ -17,12 +17,21 @@ function getButtonHtml(id, data, handleClick, selectedId) {
   );
 }
 
-export default function FilterBar({ cuisines, handleClick, selectedId }) {
+export default function FilterBar({
+  cuisinesList,
+  handleClick,
+  selectedCuisineId
+}) {
   return (
     <div>
       <div className="btn-group" role="group" aria-label="Basic example" />
-      {cuisines.map(item => {
-        return getButtonHtml(item._id, item.name, handleClick, selectedId);
+      {cuisinesList.map(item => {
+        return getButtonHtml(
+          item._id,
+          item.name,
+          handleClick,
+          selectedCuisineId
+        );
       })}
     </div>
   );

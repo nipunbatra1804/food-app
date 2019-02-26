@@ -25,9 +25,9 @@ class HomePage extends Component {
       <div className="container">
         <div className="d-flex justify-content-center">
           <FilterBar
-            cuisines={cuisines}
+            cuisinesList={cuisines}
             handleClick={this.handleFilterValue}
-            selectedId={filterId}
+            selectedCuisineId={filterId}
           />
         </div>
         <div className="row">
