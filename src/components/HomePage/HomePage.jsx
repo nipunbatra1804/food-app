@@ -3,18 +3,18 @@ import { getRestaurants } from "../../services/restaurantService";
 import Restaurant from "../Restaurant/Restaurant";
 import "./HomePage.scss";
 import FilterBar from "../FilterBar/FilterBar";
-import { getCuisines } from "../../services/cuisineService";
+import { getCuisines, getDefaultCuisine } from "../../services/cuisineService";
 
 class HomePage extends Component {
   state = {
     restaurants: getRestaurants(),
-    cuisines: getCuisines()
+    cuisines: [getDefaultCuisine(), ...getCuisines()]
   };
   render() {
     const { restaurants, cuisines } = this.state;
     return (
       <div className="container">
-        <div className="col-4 mx-auto mt-3">
+        <div className="d-flex justify-content-center">
           <FilterBar cuisines={cuisines} />
         </div>
         <div className="row">
