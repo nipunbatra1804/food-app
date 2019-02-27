@@ -11,7 +11,7 @@ class HomePage extends Component {
     restaurants: getRestaurants(),
     cuisines: [getDefaultCuisine(), ...getCuisines()],
     selectedCuisine: null,
-    selectSort: "None",
+    selectSort: "restaurantName",
     selectOptions: [
       { name: "Popularity", value: "None" },
       { name: "Restaurant Name", value: "restaurantName" },

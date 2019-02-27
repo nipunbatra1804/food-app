@@ -1,7 +1,7 @@
 import "jest-dom/extend-expect";
 import "react-testing-library/cleanup-after-each";
 import React from "react";
-import { render, fireEvent } from "react-testing-library";
+import { render, fireEvent, getByTitle } from "react-testing-library";
 import HomePage from "./HomePage";
 import * as RestaurantService from "../../services/restaurantService";
 
@@ -13,7 +13,8 @@ const sampleData = [
     openingTime: "11:00 AM",
     closingTime: "10:30 PM",
     cuisine: { _id: "5c3430ecfc13ae122d000000", name: "Western" },
-    imageUrl: "images/restaurants/5c342ac9fc13ae39f8000000.jpg"
+    imageUrl: "images/restaurants/5c342ac9fc13ae39f8000000.jpg",
+    averagePrice: 12
   },
   {
     _id: "5c342ac9fc13ae39f8000003",
@@ -23,7 +24,8 @@ const sampleData = [
     openingTime: "11:00 AM",
     closingTime: "10:00 PM",
     cuisine: { _id: "5c3430ecfc13ae122d000001", name: "Japanese" },
-    imageUrl: "images/restaurants/5c342ac9fc13ae39f8000003.jpg"
+    imageUrl: "images/restaurants/5c342ac9fc13ae39f8000003.jpg",
+    averagePrice: 17
   }
 ];
 
@@ -63,4 +65,33 @@ test("when All filter is selected the restaurant list will show all cuisines", (
   fireEvent.click(filterBtnAll);
 
   expect(getAllByText("Order").length).toEqual(2);
+});
+
+test("whent the page is rendered, loaded restaurants are sorted by name", () => {
+  const { getByText, container } = render(<HomePage />);
+
+  expect(container.querySelectorAll(".card-body").length).toEqual(2);
+  const cards = container.querySelectorAll(".card-body");
+  expect(cards[0]).toHaveTextContent(/Ramen Champion/i);
+  expect(cards[1]).toHaveTextContent(/Burger Bar/i);
+});
+
+test("when 'Sort By Price' is selected , the restaurant list ill order by price", () => {
+  const {
+    container,
+    getBySelectText,
+    getByText,
+    debug,
+    getByTitle,
+    getByDisplayValue
+  } = render(<HomePage />);
+
+  //const option = getBySelectText("Restaurant Name");
+  const option = getByTitle("sort-by");
+  fireEvent.change(option, { target: { value: "averagePrice" } });
+  debug();
+  expect(container.querySelectorAll(".card-body").length).toEqual(2);
+  const cards = container.querySelectorAll(".card-body");
+  expect(cards[1]).toHaveTextContent(/Ramen Champion/i);
+  expect(cards[0]).toHaveTextContent(/Burger Bar/i);
 });

@@ -6,18 +6,25 @@ export default function SortBySelect({
   sortOptions
 }) {
   return (
-    <select
-      className="btn btn-primary"
-      onChange={handleSortSelect}
-      value={selectedSortValue}
-    >
-      {sortOptions.map((option, index) => {
-        return (
-          <option key={index} value={option.value}>
-            {option.name}
-          </option>
-        );
-      })}
-    </select>
+    <div>
+      <select
+        className="custom-select"
+        onChange={handleSortSelect}
+        value={selectedSortValue}
+        title="sort-by"
+      >
+        {sortOptions.map((option, index) => {
+          return (
+            <option
+              key={index}
+              value={option.value}
+              className="align-items-stretch"
+            >
+              {option.name}
+            </option>
+          );
+        })}
+      </select>
+    </div>
   );
 }
