@@ -55,7 +55,11 @@ class HomePage extends Component {
     const filteredRestaurantList = this.filterAndSortRestaurantList();
 
     return (
-      <div className="container">
+      <div
+        className="container"
+        title="restaurant-list-container"
+        data-testid="home-page"
+      >
         <div className="row">
           <div className="col-auto mr-auto mt-3">
             <FilterBar

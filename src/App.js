@@ -10,11 +10,10 @@ class App extends Component {
       <BrowserRouter>
         <React.Fragment>
           <NavBar />
-
           <Route path="/home" component={HomePage} />
           <Route path="/orders" component={OrderPage} />
           <Route path="/admin" component={AdminPage} />
-          <Route path="/" component={HomePage} />
+          <Route path="/" exact component={HomePage} />
         </React.Fragment>
       </BrowserRouter>
     );

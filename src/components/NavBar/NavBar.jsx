@@ -1,14 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <Link class="navbar-brand" to="/home">
-        FoodApp
-      </Link>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <NavLink className="navbar-brand" to="/home">
+        <i className="fas fa-utensils" /> FoodApp{" "}
+        <i className="fas fa-utensils" />
+      </NavLink>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNavAltMarkup"
@@ -16,19 +17,19 @@ export default function NavBar() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon" />
+        <span className="navbar-toggler-icon" />
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <Link class="nav-item nav-link active" to="/home">
-            Home <span class="sr-only">(current)</span>
-          </Link>
-          <Link class="nav-item nav-link" to="/orders">
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="navbar-nav">
+          <NavLink className="nav-item nav-link" to="/home">
+            Home
+          </NavLink>
+          <NavLink className="nav-item nav-link" to="/orders">
             Orders
-          </Link>
-          <Link class="nav-item nav-link" to="/admin">
+          </NavLink>
+          <NavLink className="nav-item nav-link" to="/admin">
             Admin
-          </Link>
+          </NavLink>
         </div>
       </div>
     </nav>
