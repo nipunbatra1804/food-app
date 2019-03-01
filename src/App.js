@@ -14,7 +14,12 @@ class App extends Component {
           <NavBar />
           <main className="container">
             <Switch>
-              <Route path="/restaurants/:id" component={RestaurantForm} />
+              <Route
+                path="/restaurants/:id"
+                render={props => (
+                  <RestaurantForm {...props} returnPath="/admin" />
+                )}
+              />
               <Route
                 path="/restaurants/new"
                 render={props => (
