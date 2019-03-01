@@ -54,9 +54,12 @@ class RestaurantForm extends Component {
 
   render() {
     const { cuisines, data } = this.state;
+    const pageTitle = this.props.match.path.includes("new")
+      ? "New Restaurant"
+      : "Edit Restaurant";
     return (
       <div data-testid="create-page">
-        <h3>New Restaurant</h3>
+        <h3>{pageTitle}</h3>
         <form onSubmit={this.handleSubmit}>
           <Input
             name="name"
