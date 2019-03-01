@@ -15,7 +15,7 @@ export class RestaurantForm extends Component {
       closingTime: "",
       cuisineId: "",
       averagePrice: 0,
-      imageURL: ""
+      imageUrl: ""
     }
   };
 
@@ -73,7 +73,7 @@ export class RestaurantForm extends Component {
             />
             <Input
               type={"text"}
-              name="Image URL"
+              name="Image Url"
               handleChange={this.handleChange}
             />
           </div>
