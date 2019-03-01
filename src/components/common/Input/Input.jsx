@@ -1,6 +1,6 @@
 import React from "react";
 
-function Input({ name, label, type = "text", onChange }) {
+function Input({ name, label, type = "text", onChange, value }) {
   return (
     <div className="form-group">
       <label htmlFor={`${name}-input`}>{label}</label>
@@ -11,6 +11,7 @@ function Input({ name, label, type = "text", onChange }) {
           id={`${name}-input`}
           name={name}
           onChange={onChange}
+          value={value}
         />
       ) : (
         <input
@@ -21,6 +22,7 @@ function Input({ name, label, type = "text", onChange }) {
           id={`${name}-input`}
           name={name}
           onChange={onChange}
+          value={value}
         />
       )}
     </div>

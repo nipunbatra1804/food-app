@@ -9,6 +9,7 @@ function Restaurant(props) {
         src={details.imageUrl}
         className="card-img-top img-fluid"
         alt="restaurant"
+        style={{ height: "200", width: "320" }}
       />
       <div className="card-body">
         <h5 className="card-title" data-testid="restaurant-card-title">
