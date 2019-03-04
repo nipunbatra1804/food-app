@@ -20,7 +20,8 @@ class RestaurantForm extends Component {
       cuisineId: "",
       averagePrice: "",
       imageUrl: ""
-    }
+    },
+    errors: {}
   };
 
   schema = {
@@ -36,6 +37,14 @@ class RestaurantForm extends Component {
     imageUrl: Joi.string()
       .uri({ allowRelative: true })
       .required()
+  };
+
+  validateField = ({ name, value }) => {
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    console.log(name, value);
+    const { error } = Joi.validate(obj, schema);
+    return error ? error.details[0].message : null;
   };
 
   validate = () => {
@@ -63,11 +72,9 @@ class RestaurantForm extends Component {
     const { cuisineId, averagePrice } = this.state.data;
     const cuisine = getCuisines().find(cuisine => cuisine._id === cuisineId);
     if (this.validate()) {
-      console.log("abort");
       return;
     }
     let restaurant = { ...this.state.data };
-    //console.log(Joi.validate(restaurant, this.schema));
 
     delete restaurant.cuisineId;
     restaurant.cuisine = cuisine;
@@ -78,13 +85,19 @@ class RestaurantForm extends Component {
   };
 
   handleChange = ({ currentTarget: input }) => {
-    const data = { ...this.state.data };
-    data[input.name] = input.value;
-    this.setState({ data });
+    const errorMessage = this.validateField(input);
+    const errors = { ...this.state.errors };
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
+    console.log(errorMessage);
+
+    const copy = { ...this.state.data };
+    copy[input.name] = input.value;
+    this.setState({ data: copy, errors });
   };
 
   render() {
-    const { cuisines } = this.state;
+    const { cuisines, errors } = this.state;
     const {
       name,
       address,
@@ -105,24 +118,28 @@ class RestaurantForm extends Component {
             label="Name"
             onChange={this.handleChange}
             value={name}
+            error={errors.name}
           />
           <Input
             name="address"
             label="Address"
             onChange={this.handleChange}
             value={address}
+            error={errors.address}
           />
           <TimeInput
             name="openingTime"
             label="Opening Time"
             onChange={this.handleChange}
             value={openingTime}
+            error={errors.openingTime}
           />
           <TimeInput
             name="closingTime"
             label="Closing Time"
             onChange={this.handleChange}
             value={closingTime}
+            error={errors.closingTime}
           />
           <SelectInput
             name="cuisineId"
@@ -137,14 +154,21 @@ class RestaurantForm extends Component {
             type="number"
             onChange={this.handleChange}
             value={averagePrice}
+            error={errors.averagePrice}
           />
           <Input
             name="imageUrl"
             label="Image URL"
             onChange={this.handleChange}
             value={imageUrl}
+            error={errors.imageUrl}
           />
-          <button className="btn btn-primary btn-sm">Save</button>
+          <button
+            className="btn btn-primary btn-sm"
+            disabled={!this.validate()}
+          >
+            Save
+          </button>
         </form>
       </div>
     );

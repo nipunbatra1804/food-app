@@ -1,7 +1,7 @@
 import React from "react";
 import TimeField from "react-simple-timefield";
 
-function TimeInput({ name, label, onChange, value }) {
+function TimeInput({ name, label, onChange, value, error }) {
   return (
     <div className="form-group">
       <label htmlFor={`${name}-input`}>{label}</label>
@@ -19,6 +19,7 @@ function TimeInput({ name, label, onChange, value }) {
           />
         }
       />
+      {error && <div className="alert alert-danger">{error}</div>}
     </div>
   );
 }
